@@ -1,0 +1,32 @@
+<div class="container" *ngIf="!isLoggedIn">
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 text-center d-flex align-items-center">
+      <img class="img-fluid mt-5 full-size" src="Angular_Icon.png">
+    </div>
+    <div class="col-12 col-md-6 mt-5 text-center">
+      <form (ngSubmit)="login(f)" #f=ngForm>
+        <h2 class="fw-bold m-3">Log in your account</h2>
+          <div class="mb-3 ">
+            <label for="email" class="form-label"></label>
+            <input type="email" class="input" [(ngModel)]="this.loginRequest.email" id="email" aria-describedby="email" placeholder="email" name="email" >
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label"></label>
+            <input type="password" class="input" [(ngModel)]="this.loginRequest.password" (input)="checkPassword($event)"  id="password" placeholder="password" name="password">
+          </div>
+        <button class="btn button"  [disabled]="!f.valid" >Sign In</button>
+      </form>
+      <h5 class="mt-3">Or <a href="#" >Forgetten Password?</a></h5>
+      <h5 class="mt-3">Don't have an account? <a href="#" >Register</a></h5>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<!--(input)="onUpdateEmail($event)"-->
+<!--(input)="onUpdatePassword($event)"-->
+
