@@ -2,17 +2,20 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {catchError, EMPTY, Observable, retry, timeout} from "rxjs";
 import {FormsModule, NgForm} from "@angular/forms";
 import {LoginRequest} from "../model/loginRequest";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserService} from "../service/user/user.service";
 import {UserDTO} from "../model/UserDTO";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    NgClass,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -51,10 +54,13 @@ export class LoginComponent implements OnInit {
           console.log(result.token);
           localStorage.setItem('user_email', this.loginRequest.email);
           window.location.reload();
-        });
+        })
+      this.router.navigate(["/"]);
     }
 
   }
+
+
 
 
   onUpdateEmail($event: Event) {

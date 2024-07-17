@@ -1,10 +1,8 @@
 <nav class="navbar fixed-top navbar-expand-lg bg-black opacity-75 p-0">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">
-      <img id="logo" src="Logo.png" alt="logo">
-    </a>
+      <img id="logo" src="Logo.png" alt="logo" routerLink="">
     <div id="navbar-divider" class="me-auto"></div>
-    {{nome_completo}}
+    <p style="padding-left: 1rem; font-weight: bold; color: #d1cfcf">{{nome_completo}}</p>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,13 +12,16 @@
           <a class="nav-link text-white link" href="#">Teach course</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white link" href="#">Get course</a>
+          <a class="nav-link text-white link" routerLink="/courses">Get course</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#"><button type="button" class="btn button-login">Login</button></a>
+        <li class="nav-item" *ngIf="!isLogged()">
+          <a class="nav-link text-white"><button type="button" class="btn button-login" routerLink="login">login</button></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#"><button type="button" class="btn button-register">Register</button></a>
+        <li class="nav-item" *ngIf="!isLogged()">
+          <a class="nav-link text-white"><button type="button" class="btn button-register" routerLink="register">Register</button></a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged()">
+          <a class="nav-link text-white"><button class="btn button-logout" (click)="logout()">Logout</button></a>
         </li>
       </ul>
     </div>

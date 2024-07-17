@@ -1,7 +1,7 @@
 export class RegisterRequest {
 
-  name: string;
-  lastname: string;
+  nome: string;
+  cognome: string;
   email: string;
   password: string;
 }

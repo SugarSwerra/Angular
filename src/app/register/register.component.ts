@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, NgForm} from "@angular/forms";
 import {RegisterRequest} from "../model/registerRequest";
+import {NgClass} from "@angular/common";
+import {UserService} from "../service/user/user.service";
+import {HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgClass
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -14,23 +19,33 @@ import {RegisterRequest} from "../model/registerRequest";
 export class RegisterComponent {
   registerRequest: RegisterRequest = new RegisterRequest();
 
-  onUpdatePassword($event: Event) {
-    console.log("Password inserita: "+ (<HTMLInputElement>$event.target).value);
+  // onUpdatePassword($event: Event) {
+  //   console.log("Password inserita: "+ (<HTMLInputElement>$event.target).value);
+  // }
+  //
+  // onUpdateEmail($event: Event) {
+  //   console.log("Email inserita: " + (<HTMLInputElement>$event.target).value);
+  // }
+  //
+  // onUpdateLastname($event: Event) {
+  //   console.log("Cognome inserito: " +(<HTMLInputElement>$event.target).value);
+  // }
+  //
+  // onUpdateName($event: Event) {
+  //   console.log("Nome inserito: "+ (<HTMLInputElement>$event.target).value);
+  // }
+
+  constructor(private userService: UserService, private router: Router) {
+
   }
 
-  onUpdateEmail($event: Event) {
-    console.log("Email inserita: " + (<HTMLInputElement>$event.target).value);
-  }
 
-  onUpdateLastname($event: Event) {
-    console.log("Cognome inserito: " +(<HTMLInputElement>$event.target).value);
-  }
 
-  onUpdateName($event: Event) {
-    console.log("Nome inserito: "+ (<HTMLInputElement>$event.target).value);
-  }
-
-  onSubmit() {
-    console.log(this.registerRequest);
+  register(form: NgForm) {
+      if (form.valid) {
+        this.userService.register(this.registerRequest).subscribe((result: any) => {
+          this.router.navigate(["/"]);
+        })
+      }
   }
 }

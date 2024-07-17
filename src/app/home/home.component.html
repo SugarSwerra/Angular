@@ -35,3 +35,20 @@
     <h4 class="sponsor">Be one of them, don't waste your time</h4>
   </div>
 </div>
+
+
+
+<!--<app-carousel></app-carousel>-->
+<app-search-course (cerca)="receiveData($event)"></app-search-course>
+<div class="container mt-5">
+  <div class="row">
+    <ng-container *ngFor="let course of courses">
+      <ng-container *ngIf="course.nome_Corso.toLowerCase().includes(courseSearch.toLowerCase())">
+        <div class="col-12 col-md-6 col-lg-4 mx-auto mt-5">
+          <app-shop [corso]="course"></app-shop>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+

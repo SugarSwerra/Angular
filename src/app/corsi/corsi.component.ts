@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {LoginComponent} from "../login/login.component";
 import {NgForOf, NgIf} from "@angular/common";
-import {RegisterComponent} from "../register/register.component";
 import {SearchCourseComponent} from "../search-course/search-course.component";
 import {ShopComponent} from "../shop/shop.component";
 import {UserService} from "../service/user/user.service";
@@ -9,20 +7,18 @@ import {CorsoService} from "../service/corso/corso.service";
 import {CorsoDto} from "../model/CorsoDto";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-corsi',
   standalone: true,
     imports: [
-        LoginComponent,
         NgForOf,
         NgIf,
-        RegisterComponent,
         SearchCourseComponent,
         ShopComponent
     ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './corsi.component.html',
+  styleUrl: './corsi.component.css'
 })
-export class HomeComponent {
+export class CorsiComponent {
 
   title = 'standard';
 

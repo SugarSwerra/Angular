@@ -1,7 +1,7 @@
 import {Course} from "./Course";
 
 export class UserDTO {
-  id: string;
+  id: number;
   nome: string;
   cognome: string;
   email: string;

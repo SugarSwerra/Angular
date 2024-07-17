@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {UserDTO} from "../../model/UserDTO";
 import {LoginRequest} from "../../model/loginRequest";
+import {RegisterRequest} from "../../model/registerRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,10 @@ export class UserService {
     return this.http.get<UserDTO>("http://localhost:8080/api/utente/" + email, {headers}).pipe(retry(3)).pipe(
       catchError(this.handleError)
     )
+  }
+
+
+  register(user: RegisterRequest): Observable<UserDTO> {
+    return this.http.post<UserDTO>("http://localhost:8080/api/utente/reg", user).pipe(retry(3), catchError(this.handleError));
   }
 }

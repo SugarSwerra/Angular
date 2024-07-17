@@ -1,18 +1,20 @@
 import {Component, Input, Output} from '@angular/core';
 import {UserDTO} from "../model/UserDTO";
 import {UserService} from "../service/user/user.service";
+import {NgIf} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf,
+    RouterLink
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
-  @Input()
-  inputParam: string = "";
 
   constructor(private userService: UserService) {
   }
@@ -21,15 +23,26 @@ export class NavbarComponent {
 
   ngOnInit(): void {
       this.userService.findUserByMail(localStorage.getItem("user_email")).subscribe((user: UserDTO) =>{
-      this.nome_completo = user.nome + " " + user.cognome;
+        if (user.nome == null || user.cognome == null) {
+          this.nome_completo = "";
+        } else {
+          this.nome_completo = user.nome + " " + user.cognome;
+        }
   })
-
-
 }
 
+  @Input()
+  inputParam: string = "";
 
 
+  isLogged(): boolean {
+    return (localStorage.getItem("access_token") != null);
+  }
 
-
+  public logout():void {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
+    window.location.reload();
+  }
 
 }

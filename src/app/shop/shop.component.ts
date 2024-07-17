@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgForOf} from "@angular/common";
+import {CorsoService} from "../service/corso/corso.service";
+import {CorsoDto} from "../model/CorsoDto";
 
 @Component({
   selector: 'app-shop',
@@ -12,10 +14,12 @@ import {NgForOf} from "@angular/common";
 })
 export class ShopComponent {
 
-  Courses 
+  constructor() {
+  }
+
 
  @Input()
-  course : {name: string; description: string; price: number;}
+  corso : CorsoDto;
 
 
 
