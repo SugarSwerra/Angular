@@ -7,18 +7,20 @@ import {ShopComponent} from "../shop/shop.component";
 import {UserService} from "../service/user/user.service";
 import {CorsoService} from "../service/corso/corso.service";
 import {CorsoDto} from "../model/CorsoDto";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [
-        LoginComponent,
-        NgForOf,
-        NgIf,
-        RegisterComponent,
-        SearchCourseComponent,
-        ShopComponent
-    ],
+  imports: [
+    LoginComponent,
+    NgForOf,
+    NgIf,
+    RegisterComponent,
+    SearchCourseComponent,
+    ShopComponent,
+    RouterLink
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
